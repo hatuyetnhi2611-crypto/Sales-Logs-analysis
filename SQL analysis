@@ -1,5 +1,40 @@
-/* Dataset overview */
+--Dataset overview
+--Checking dataset structure
 
+SELECT 
+    COUNT(*) AS total_rows,
+    (SELECT count(*) FROM information_schema.columns WHERE table_name = 'DataCo') AS total_columns
+FROM "DataCo";
+
+--Checking columns' name in the dataset
+
+SELECT * FROM "DataCo";
+
+--Checking distinct values of order status, delivery status, type, and shipping mode
+
+SELECT DISTINCT "Shipping Mode" FROM "DataCo";
+
+SELECT DISTINCT "Order Status" FROM "DataCo";
+
+SELECT DISTINCT "Delivery Status" FROM "DataCo";
+
+SELECT DISTINCT "Type" FROM "DataCo";
+
+--Find max & min values of order item product price, order item discount rate, order date (DateOrders), and shipping date (DateOrders)
+
+SELECT
+    MIN("Order Item Product Price") AS min_product_price,
+    MAX("Order Item Product Price") AS max_product_price,
+    MIN("Order Item Discount Rate") AS min_discount_rate,
+    MAX("Order Item Discount Rate") AS max_discount_rate,
+    MIN("order date (DateOrders)"::timestamp) AS earliest_order_date,
+    MAX("order date (DateOrders)"::timestamp) AS latest_order_date,
+    MIN("shipping date (DateOrders)"::timestamp) AS earliest_shipping_date,
+    MAX("shipping date (DateOrders)"::timestamp) AS latest_shipping_date
+FROM "DataCo";
+
+--Data cleaning
+--Find duplicate
 SELECT *
 FROM "DataCo"
 WHERE "Order Item Id" IN (
@@ -9,3 +44,83 @@ WHERE "Order Item Id" IN (
     HAVING COUNT(*) > 1
 )
 ORDER BY "Order Item Id";
+
+--Find missing values
+
+SELECT 
+    COUNT(*) AS tong_so_dong,
+    COUNT(*) - COUNT("Type") AS null_type,
+    COUNT(*) - COUNT("Days for shipping (real)") AS null_days_shipping_real,
+    COUNT(*) - COUNT("Days for shipment (scheduled)") AS null_days_shipment_scheduled,
+    COUNT(*) - COUNT("Benefit per order") AS null_benefit_per_order,
+    COUNT(*) - COUNT("Sales per customer") AS null_sales_per_customer,
+    COUNT(*) - COUNT("Delivery Status") AS null_delivery_status,
+    COUNT(*) - COUNT("Order Item Id") AS null_order_item_id,
+    COUNT(*) - COUNT("Late_delivery_risk") AS null_delivery_risk,
+    COUNT(*) - COUNT("Category Id") AS null_category_id,
+    COUNT(*) - COUNT("Customer City") AS null_customer_city,
+    COUNT(*) - COUNT("Customer Country") AS null_customer_country,
+    COUNT(*) - COUNT("Customer Email") AS null_customer_email,
+    COUNT(*) - COUNT("Customer Fname") AS null_customer_Fname,
+    COUNT(*) - COUNT("Customer Id") AS null_customer_id,
+    COUNT(*) - COUNT("Customer Lname") AS null_customer_Lname,
+    COUNT(*) - COUNT("Customer Password") AS null_customer_password,
+    COUNT(*) - COUNT("Customer Segment") AS null_customer_segment,
+    COUNT(*) - COUNT("Customer State") AS null_customer_state,
+    COUNT(*) - COUNT("Customer Street") AS null_customer_street,
+    COUNT(*) - COUNT("Customer Zipcode") AS null_customer_zipcode,
+    COUNT(*) - COUNT("Department Id") AS null_department_id,
+    COUNT(*) - COUNT("Department Name") AS null_department_name,
+    COUNT(*) - COUNT("Latitude") AS null_Lattitude,
+    COUNT(*) - COUNT("Longitude") AS null_longtitude,
+    COUNT(*) - COUNT("Market") AS null_market,
+    COUNT(*) - COUNT("Order City") AS null_order_city,
+    COUNT(*) - COUNT("Order Country") AS null_order_country,
+    COUNT(*) - COUNT("Order Customer Id") AS null_order_customer_id,
+    COUNT(*) - COUNT("order date (DateOrders)") AS null_order_date,
+    COUNT(*)- COUNT("Order Id") AS null_order_id,
+    COUNT(*) - COUNT("Order Item Cardprod Id") AS null_order_item_carprod_id,
+    COUNT(*) - COUNT("Order Item Discount") AS null_order_item_discount,
+    COUNT(*) - COUNT("Order Item Discount Rate") AS null_order_item_discount_rate,
+    COUNT(*) - COUNT("Order Item Id") AS null_order_item_id,
+    COUNT(*) - COUNT("Order Item Product Price") AS null_order_item_product_price,
+    COUNT(*) - COUNT("Order Item Profit Ratio") AS null_order_item_profit_ratio,
+    COUNT(*) - COUNT("Order Item Quantity") AS null_order_item_quantity,
+    COUNT(*) - COUNT("Sales") AS null_sales,
+    COUNT(*) - COUNT("Order Item Total") AS null_order_item_total,
+    COUNT(*) - COUNT("Order Profit Per Order") AS null_order_profit_per_order,
+    COUNT(*) - COUNT("Order Region") AS null_order_region,
+    COUNT(*) - COUNT("Order State") AS null_order_state,
+    COUNT(*) - COUNT("Order Status") AS null_order_status,
+    COUNT(*) - COUNT("Order Zipcode") AS null_order_zipcode,
+    COUNT(*) - COUNT("Product Card Id") AS null_product_card_id,
+    COUNT(*) - COUNT("Product Category Id") AS null_product_category_id,
+    COUNT(*) - COUNT("Product Description") AS null_product_description,
+    COUNT(*) - COUNT("Product Image") AS null_product_image,
+    COUNT(*) - COUNT("Product Name") AS null_product_name,
+    COUNT(*) - COUNT("Product Price") AS null_product_price,
+    COUNT(*) - COUNT("Product Status") AS null_product_status,
+    COUNT(*) - COUNT("shipping date (DateOrders)") AS null_shipping_date,
+    COUNT(*) - COUNT("Shipping Mode") AS null_shipping_mode    
+FROM "DataCo";
+
+--Checking logic validation
+SELECT *
+FROM "DataCo"
+WHERE
+  "Days for shipping (real)" < 0
+  OR "Days for shipment (scheduled)" < 0
+  OR TO_TIMESTAMP("shipping date (DateOrders)", 'MM/DD/YYYY HH24:MI') 
+  < TO_TIMESTAMP("order date (DateOrders)", 'MM/DD/YYYY HH24:MI')
+  OR (
+      "Delivery Status" = 'Advance shipping' 
+      AND "Days for shipping (real)" > "Days for shipment (scheduled)"
+     )
+  OR (
+      "Delivery Status" = 'Late delivery' 
+      AND "Days for shipping (real)" < "Days for shipment (scheduled)"
+     )
+  OR (
+        "Delivery Status" = 'Shipping on time' 
+        AND "Days for shipping (real)" <> "Days for shipment (scheduled)"
+    );
