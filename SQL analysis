@@ -1,0 +1,10 @@
+--Find duplicate
+SELECT *
+FROM "DataCo"
+WHERE "Order Item Id" IN (
+    SELECT "Order Item Id"
+    FROM "DataCo"
+    GROUP BY "Order Item Id"
+    HAVING COUNT(*) > 1
+)
+ORDER BY "Order Item Id";
