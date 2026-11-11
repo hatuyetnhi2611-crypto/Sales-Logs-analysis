@@ -14,3 +14,5 @@
    - To run tests to find out possible reasons behind the significant loss and identify areas where loss can be alleviated
    - To run tests to verify if factors such as customers' state, products, and departments are relevant with the delay in shipment date
 3. Dataset overview
+   The dataset records all the transactions of a retail firm from 2015 to 2018 with 180519 rows and 53 columns. Each row corresponding with one transaction covering info such as revenue, discount amount, profit & loss, payment type, delivery status, order status, customer details, product name & price, shipment date, expected and actual shipping window, shipping mode, and destination of the products.
+   Source: https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis
