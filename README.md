@@ -21,7 +21,7 @@ General picture of sales and logistics performance ➔ Assumptions made ➔ Test
    - To run tests to find out possible reasons behind the significant loss and identify areas where loss can be alleviated
    - To run tests to verify if factors such as customers' state, products, and departments are relevant with the delay in shipment date
 ---
-**3. Dataset overview**
+**3. Dataset Overview**
 ---
    The dataset records all the transactions of a retail firm from 2015 to 2018 with 180519 rows and 53 columns. Each row corresponding with one transaction covers info such as revenue, discount amount, profit & loss, payment type, delivery status, order status, customer details, product name & price, shipment date, expected and actual shipping window, shipping mode, and destination of the products.
    
