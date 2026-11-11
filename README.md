@@ -34,6 +34,7 @@ General picture of sales and logistics performance ➔ Assumptions made ➔ Test
    - Find missing values
    - Find duplicate rows
    - Logic validation.
+     
    Results obtained:
    - 8 rows lacking customers' last name, 3 rows lacking customers' zip code, 155,679 rows lacking orders' zip code and all the rows lacking product description ➔ no data curation is required because these fields are not necessary during the data analysis
    - No duplicate rows were found.
