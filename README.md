@@ -23,6 +23,6 @@ General picture of sales and logistics performance ➔ Assumptions made ➔ Test
 ---
 **3. Dataset overview**
 ---
-   The dataset records all the transactions of a retail firm from 2015 to 2018 with 180519 rows and 53 columns. Each row corresponding with one transaction covering info such as revenue, discount amount, profit & loss, payment type, delivery status, order status, customer details, product name & price, shipment date, expected and actual shipping window, shipping mode, and destination of the products.
+   The dataset records all the transactions of a retail firm from 2015 to 2018 with 180519 rows and 53 columns. Each row corresponding with one transaction covers info such as revenue, discount amount, profit & loss, payment type, delivery status, order status, customer details, product name & price, shipment date, expected and actual shipping window, shipping mode, and destination of the products.
    
 **Source:** [DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)
