@@ -1,5 +1,7 @@
 # Sales-Logs-analysis
-1. Project Overview
+---
+**1. Project Overview**
+---
    The project includes analytics about two important aspects of a retail business which are sales and logistics. While sales performance is studied based on realized revenue and profit, the logistics competency of the company is evaluated mainly based on dispatch date. The analysis of both aspects starts with overall trend and data aggregation to generalize the health of the two. This is then followed by a more in-depth study where some possible causes and scenarios behind problems and trends found earlier are brainstormed, some tests will be run to support the assumptions made, and those risks or red flags identified along the way will be highlighted.
    Analytical flow:
    General picture of sales and logistics performance --> Assumptions made --> Tests run to prove the possibility of assumptions made --> Conclusion from the tests and red flags raised if any 
