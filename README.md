@@ -26,3 +26,18 @@ General picture of sales and logistics performance ➔ Assumptions made ➔ Test
    The dataset records all the transactions of a retail firm from 2015 to 2018 with 180519 rows and 53 columns. Each row corresponding with one transaction covers info such as revenue, discount amount, profit & loss, payment type, delivery status, order status, customer details, product name & price, shipment date, expected and actual shipping window, shipping mode, and destination of the products.
    
 **Source:** [DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)
+
+---
+**4. Data Cleaning**
+---
+   Action taken:
+   - Find missing values
+   - Find duplicate rows
+   - Logic validation.
+   Results obtained:
+   - 8 rows lacking customers' last name, 3 rows lacking customers' zip code, 155,679 rows lacking orders' zip code and all the rows lacking product description ➔ no data curation is required because these fields are not necessary during the data analysis
+   - No duplicate rows were found.
+   - No shipment dates are before order dates and the relationship between actual and scheduled shipping days strictly aligns with the assigned delivery status:
+        + Late delivery: Actual days > Scheduled days
+        + Shipping on time: Actual days = Scheduled days
+        + Advance shipping: Actual days < Scheduled days
