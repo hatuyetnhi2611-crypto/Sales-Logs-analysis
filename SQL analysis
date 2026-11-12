@@ -124,3 +124,44 @@ WHERE
         "Delivery Status" = 'Shipping on time' 
         AND "Days for shipping (real)" <> "Days for shipment (scheduled)"
     );
+
+--Check if order item product price and product price are identical.
+SELECT COUNT(*) AS mismatched_rows
+FROM "DataCo"
+WHERE "Order Item Product Price" <> "Product Price";
+
+--Check if order item quantity is the quantity of one line item or the entire order.
+SELECT 
+    "Order Id", 
+    "Order Item Id", 
+    "Product Name", 
+    "Order Item Quantity"
+FROM "DataCo"
+WHERE "Order Id" IN (
+    SELECT "Order Id"
+    FROM "DataCo"
+    GROUP BY "Order Id"
+    HAVING COUNT("Order Item Id") > 1
+    LIMIT 1
+);
+
+--Checking the structure of gross revenue, net revenue, profit, and discount.
+SELECT 
+    "Order Id",
+    "Sales",
+    "Order Item Product Price",
+    "Order Item Quantity",
+    "Order Item Discount",
+    "Order Item Discount Rate",
+    "Order Item Total",
+    "Order Profit Per Order",
+    "Order Item Profit Ratio"
+FROM "DataCo"
+LIMIT 5;
+
+--Checking distinct values of scheduled shipping days per shipping mode
+SELECT 
+    "Shipping Mode",
+    array_agg(DISTINCT "Days for shipment (scheduled)") AS scheduled_days_list
+FROM "DataCo"
+GROUP BY "Shipping Mode";
