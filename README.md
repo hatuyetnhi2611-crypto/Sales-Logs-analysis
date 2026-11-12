@@ -42,3 +42,23 @@ General picture of sales and logistics performance ➔ Assumptions made ➔ Test
         + Late delivery: Actual days > Scheduled days
         + Shipping on time: Actual days = Scheduled days
         + Advance shipping: Actual days < Scheduled days
+---
+**5. Scope of data used**
+---
+   **Timeframe:** Restricted to 2015–2017 because transactions for these years are fully recorded. Data for 2018 only covers January, which would introduce seasonal noise and skew time-series trend analysis.
+   **Order Status Selection:**
+      - For Realized Revenue & Profit Analysis: Filtered to include only Complete and Closed orders, ensuring transactions have completed their full lifecycle and revenue was genuinely collected.
+      - For Logistics Analysis: Included all order statuses except Cancelled. Delivery performance is evaluated based on warehouse dispatch timing rather than final delivery completion.
+   **Key Fields Utilized:** Days for shipping (real), Days for shipment (scheduled), Benefit per order, Sales per customer, Delivery Status, Late_delivery_risk, Customer Id, Customer Segment, Customer State, Department Name, Market, order date (DateOrders), Order Item Discount, Order Item Discount Rate, Order Item Id, Order Item Product Price, Order Item Profit Ratio, Order Item Quantity, Sales, Order Item Total, Order Profit Per Order, Order Status, Product Price, shipping date (DateOrders), Shipping Mode, Product Name
+   
+---
+**6. Data Understanding & Column Logic**
+---
+   **Pricing Consistency:** Order Item Product Price and Product Price are identical and used interchangeably to denote the unit price of a product.
+   **Granularity of Quantity:** Order Item Quantity represents the number of units within a specific line item/transaction, not the total quantity of an entire order.
+   **Gross Revenue (Sales):** Represents pre-discount revenue at the line-item level. Sales = Order Item Product Price x Order item quantity
+   **Discount Mechanics:** Order Item Discount Rate is the percentage discount applied per transaction while Order Item Discount is the total amount discounted from Sales of one transaction. Order Item Discount = Order Item Discount Rate x Sales
+   **Net Revenue (Order Item Total / Sales per customer):** Both columns are identical and represent post-discount net revenue per transaction: Order Item Total = Sales - Order Item Discount
+   **Profitability Structure:** Order Item Profit Ratio is the profit margin generated from net revenue. Order Profit Per Order and Benefit per order are identical and represent the amount of profit or loss generated from a line item's net revenue.
+   **Shipping Date Interpretation:** shipping date (DateOrders) is treated as the warehouse dispatch date rather than the final customer receipt date. Scheduled shipping days remain fixed per shipping mode regardless of geographic distance, indicating this field functions more as an internal operational benchmark rather than a strict carrier transit promise.
+   **Risk Flag:** Late_delivery_risk is a binary indicator where 1 denotes late delivery and 0 denotes timely delivery.
