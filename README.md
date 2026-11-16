@@ -427,3 +427,128 @@ Both quantity per customer and the number of customers decreased from 2016 to 20
 | 3136          | 3463                | 1181          | 4038                |
 
 The number of active customers fell from 6,599 in 2016 to 5,219 in 2017. New customers fell by 62% (3,136 to 1,181) while returning customers rose by 17% (3,463 to 4,038), so the decline comes entirely from fewer new customers. “New” means customers with no order in any earlier year. This suggests that the company should look into ways to make the long-existing products reach a wider range of customers so their  sold volume & revenue can be improved.
+
+   - High revenue concentration
+
+| Product Name                                  | total_2015 | total_2016 | total_2017 | cum_pct_2015 | cum_pct_2016 | cum_pct_2017 |
+| --------------------------------------------- | ---------- | ---------- | ---------- | ------------ | ------------ | ------------ |
+| Field & Stream Sportsman 16 Gun Fire Safe     | 974313.23  | 1003937.71 | 736298.08  | 20.06        | 20.60        | 15.97        |
+| Perfect Fitness Perfect Rip Deck              | 630928.92  | 639404.24  | 464273.15  | 33.05        | 33.72        | 26.04        |
+| Diamondback Women's Serene Classic Comfort Bi | 596965.90  | 575566.96  | 444849.87  | 45.33        | 45.53        | 35.68        |
+| Nike Men's Free 5.0+ Running Shoe             | 540546.58  | 520656.64  | 398933.59  | 56.46        | 56.21        | 44.34        |
+| Nike Men's Dri-FIT Victory Golf Polo          | 452596.50  | 457595.00  | 336432.00  | 65.78        | 65.60        | 51.63        |
+| Pelican Sunstream 100 Kayak                   | 428127.18  | 439243.57  | 334677.40  | 74.59        | 74.61        | 58.89        |
+| Nike Men's CJ Elite 2 TD Football Cleat       | 417866.14  | 425289.79  | 305706.48  | 83.19        | 83.34        | 65.52        |
+| O'Brien Men's Neoprene Life Vest              | 417287.63  | 416028.29  | 298142.43  | 91.78        | 91.88        | 71.99        |
+| Dell Laptop                                   | 0.00       | 0.00       | 279142.50  | 100.00       | 100.00       | 78.04        |
+| Under Armour Girls' Toddler Spine Surge Runni | 182708.85  | 181157.07  | 131413.16  | 95.55        | 95.59        | 80.89        |
+| Web Camera                                    | 0.00       | 0.00       | 103386.08  | 100.00       | 100.00       | 83.13        |
+| Porcelain crafts                              | 0.00       | 0.00       | 91472.37   | 100.00       | 100.00       | 85.12        |
+| Children's heaters                            | 0.00       | 0.00       | 88935.98   | 100.00       | 100.00       | 87.05        |
+| Lawn mower                                    | 0.00       | 0.00       | 79018.86   | 100.00       | 100.00       | 88.76        |
+| Industrial consumer electronics               | 0.00       | 0.00       | 45941.82   | 100.00       | 100.00       | 89.76        |
+| DVDs                                          | 0.00       | 0.00       | 32446.91   | 100.00       | 100.00       | 90.46        |
+| First aid kit                                 | 0.00       | 0.00       | 29920.85   | 100.00       | 100.00       | 91.11        |
+| Rock music                                    | 0.00       | 0.00       | 28727.48   | 100.00       | 100.00       | 91.73        |
+| Summer dresses                                | 0.00       | 0.00       | 21299.34   | 100.00       | 100.00       | 92.19        |
+| SOLE E35 Elliptical                           | 0.00       | 0.00       | 19449.89   | 100.00       | 100.00       | 92.62        |
+| Smart watch                                   | 0.00       | 0.00       | 18807.98   | 100.00       | 100.00       | 93.02        |
+| Men's gala suit                               | 0.00       | 0.00       | 14157.55   | 100.00       | 100.00       | 93.33        |
+| LIJA Women's Mid-Length Panel Golf Shorts     | 0.00       | 0.00       | 9379.00    | 100.00       | 100.00       | 93.53        |
+| Adult dog supplies                            | 0.00       | 0.00       | 9020.68    | 100.00       | 100.00       | 93.73        |
+| TaylorMade White Smoke IN-12 Putter           | 0.00       | 0.00       | 8940.58    | 100.00       | 100.00       | 93.92        |
+| Elevation Training Mask 2.0                   | 0.00       | 0.00       | 8406.54    | 100.00       | 100.00       | 94.11        |
+| Nike Women's Free 5.0 TR FIT PRT 4 Training S | 0.00       | 0.00       | 7701.32    | 100.00       | 100.00       | 94.27        |
+| Brooks Women's Ghost 6 Running Shoe           | 0.00       | 0.00       | 7250.50    | 100.00       | 100.00       | 94.43        |
+| Nike Men's Free TR 5.0 TB Training Shoe       | 0.00       | 0.00       | 7114.75    | 100.00       | 100.00       | 94.58        |
+| Garmin Forerunner 910XT GPS Watch             | 0.00       | 0.00       | 7069.80    | 100.00       | 100.00       | 94.74        |
+| Polar FT4 Heart Rate Monitor                  | 0.00       | 0.00       | 7069.14    | 100.00       | 100.00       | 94.89        |
+| Garmin Approach S3 Golf GPS Watch             | 0.00       | 0.00       | 6745.95    | 100.00       | 100.00       | 95.04        |
+| GoPro HERO3+ Black Edition Camera             | 0.00       | 0.00       | 6565.82    | 100.00       | 100.00       | 95.18        |
+| The North Face Women's Recon Backpack         | 0.00       | 0.00       | 6482.03    | 100.00       | 100.00       | 95.32        |
+| LIJA Women's Argyle Golf Polo                 | 0.00       | 0.00       | 6119.60    | 100.00       | 100.00       | 95.45        |
+| Nike Kids' Grade School KD VI Basketball Shoe | 0.00       | 0.00       | 6114.88    | 100.00       | 100.00       | 95.59        |
+| Merrell Women's Grassbow Sport Hiking Shoe    | 0.00       | 0.00       | 6081.37    | 100.00       | 100.00       | 95.72        |
+| Fitbit The One Wireless Activity & Sleep Trac | 0.00       | 0.00       | 5736.15    | 100.00       | 100.00       | 95.84        |
+| Bag Boy M330 Push Cart                        | 0.00       | 0.00       | 5409.69    | 100.00       | 100.00       | 95.96        |
+| Mio ALPHA Heart Rate Monitor/Sport Watch      | 0.00       | 0.00       | 5368.03    | 100.00       | 100.00       | 96.08        |
+| TaylorMade 2014 Purelite Stand Bag            | 0.00       | 0.00       | 4862.40    | 100.00       | 100.00       | 96.18        |
+| Sports Books                                  | 0.00       | 0.00       | 4736.86    | 100.00       | 100.00       | 96.28        |
+| Garmin Approach S4 Golf GPS Watch             | 0.00       | 0.00       | 4693.33    | 100.00       | 100.00       | 96.39        |
+| Pelican Maverick 100X Kayak                   | 0.00       | 0.00       | 4625.10    | 100.00       | 100.00       | 96.49        |
+| MDGolf Pittsburgh Penguins Putter             | 0.00       | 0.00       | 4573.82    | 100.00       | 100.00       | 96.58        |
+| Titleist Small Wheeled Travel Cover           | 0.00       | 0.00       | 4532.30    | 100.00       | 100.00       | 96.68        |
+| Yakima DoubleDown Ace Hitch Mount 4-Bike Rack | 0.00       | 0.00       | 4528.45    | 100.00       | 100.00       | 96.78        |
+| Baby sweater                                  | 0.00       | 0.00       | 4329.44    | 100.00       | 100.00       | 96.88        |
+| Total Gym 1400                                | 0.00       | 0.00       | 4309.34    | 100.00       | 100.00       | 96.97        |
+| Titleist Club Glove Travel Cover              | 0.00       | 0.00       | 4253.84    | 100.00       | 100.00       | 97.06        |
+| adidas Brazuca 2014 Official Match Ball       | 0.00       | 0.00       | 4013.32    | 100.00       | 100.00       | 97.15        |
+| GolfBuddy VT3 GPS Watch                       | 0.00       | 0.00       | 3962.78    | 100.00       | 100.00       | 97.23        |
+| adidas Youth Germany Black/Red Away Match Soc | 9654.75    | 11140.50   | 3924.55    | 95.99        | 95.82        | 97.32        |
+| Ogio Race Golf Shoes                          | 0.00       | 0.00       | 3906.34    | 100.00       | 100.00       | 97.40        |
+| Merrell Women's Siren Mid Waterproof Hiking B | 0.00       | 0.00       | 3674.41    | 100.00       | 100.00       | 97.48        |
+| Cleveland Golf Collegiate My Custom Wedge 588 | 0.00       | 0.00       | 3655.90    | 100.00       | 100.00       | 97.56        |
+| Merrell Men's All Out Flash Trail Running Sho | 0.00       | 0.00       | 3635.68    | 100.00       | 100.00       | 97.64        |
+| LIJA Women's Button Golf Dress                | 0.00       | 0.00       | 3510.54    | 100.00       | 100.00       | 97.72        |
+| Fighting video games                          | 0.00       | 0.00       | 3497.43    | 100.00       | 100.00       | 97.79        |
+| Nike Men's Kobe IX Elite Low Basketball Shoe  | 0.00       | 0.00       | 3388.81    | 100.00       | 100.00       | 97.87        |
+| LIJA Women's Eyelet Sleeveless Golf Polo      | 12149.15   | 9438.66    | 3382.93    | 95.80        | 96.22        | 97.94        |
+| TaylorMade Women's RBZ SL Rescue              | 0.00       | 0.00       | 3359.56    | 100.00       | 100.00       | 98.01        |
+| Merrell Women's Grassbow Sport Waterproof Hik | 0.00       | 0.00       | 3180.18    | 100.00       | 100.00       | 98.08        |
+| Bowflex SelectTech 1090 Dumbbells             | 0.00       | 0.00       | 3131.94    | 100.00       | 100.00       | 98.15        |
+| Cleveland Golf Women's 588 RTX CB Satin Chrom | 0.00       | 0.00       | 3120.91    | 100.00       | 100.00       | 98.22        |
+| Titleist Pro V1x High Numbers Personalized Go | 9417.93    | 7715.81    | 3034.64    | 96.19        | 96.55        | 98.28        |
+| Titleist Pro V1x Golf Balls                   | 6777.60    | 6987.08    | 3031.26    | 97.09        | 96.84        | 98.35        |
+| adidas Men's F10 Messi TRX FG Soccer Cleat    | 8138.20    | 9852.73    | 2935.29    | 96.36        | 96.02        | 98.41        |
+| Diamondback Boys' Insight 24 Performance Hybr | 0.00       | 0.00       | 2920.39    | 100.00       | 100.00       | 98.48        |
+| SOLE E25 Elliptical                           | 0.00       | 0.00       | 2869.97    | 100.00       | 100.00       | 98.54        |
+| Nike Men's Fingertrap Max Training Shoe       | 0.00       | 0.00       | 2790.39    | 100.00       | 100.00       | 98.60        |
+| Diamondback Girls' Clarity 24 Hybrid Bike 201 | 0.00       | 0.00       | 2738.90    | 100.00       | 100.00       | 98.66        |
+| Polar Loop Activity Tracker                   | 0.00       | 0.00       | 2732.25    | 100.00       | 100.00       | 98.72        |
+| Nike Men's Comfort 2 Slide                    | 6940.58    | 7107.25    | 2482.54    | 96.81        | 96.69        | 98.77        |
+| insta-bed Neverflat Air Mattress              | 0.00       | 0.00       | 2475.56    | 100.00       | 100.00       | 98.83        |
+| Titleist Pro V1x High Numbers Golf Balls      | 7185.30    | 5988.88    | 2447.72    | 96.67        | 97.23        | 98.88        |
+| Titleist Pro V1 High Numbers Personalized Gol | 7901.12    | 6967.39    | 2275.59    | 96.52        | 96.98        | 98.93        |
+| Under Armour Women's Micro G Skulpt Running S | 6306.14    | 8347.18    | 2205.41    | 97.36        | 96.39        | 98.98        |
+| Stiga Master Series ST3100 Competition Indoor | 0.00       | 0.00       | 2130.08    | 100.00       | 100.00       | 99.02        |
+| Under Armour Men's Compression EV SL Slide    | 6908.16    | 5208.47    | 1915.22    | 96.95        | 97.90        | 99.06        |
+| Nike Women's Tempo Shorts                     | 4950.30    | 3770.70    | 1895.40    | 98.11        | 99.07        | 99.10        |
+| adidas Kids' F5 Messi FG Soccer Cleat         | 4080.15    | 5545.53    | 1856.38    | 98.73        | 97.57        | 99.14        |
+| Bridgestone e6 Straight Distance NFL San Dieg | 4543.86    | 4927.69    | 1767.58    | 98.30        | 98.21        | 99.18        |
+| Columbia Men's PFG Anchor Tough T-Shirt       | 4149.60    | 5466.30    | 1757.10    | 98.47        | 97.68        | 99.22        |
+| Under Armour Hustle Storm Medium Duffle Bag   | 5328.06    | 4494.27    | 1697.35    | 97.69        | 98.59        | 99.26        |
+| Bushnell Pro X7 Jolt Slope Rangefinder        | 0.00       | 0.00       | 1682.97    | 100.00       | 100.00       | 99.29        |
+| ENO Atlas Hammock Straps                      | 5653.38    | 5604.95    | 1555.13    | 97.47        | 97.34        | 99.33        |
+| Clicgear Rovic Cooler Bag                     | 5291.66    | 5352.02    | 1535.41    | 97.80        | 97.79        | 99.36        |
+| TYR Boys' Team Digi Jammer                    | 6659.89    | 5176.07    | 1472.42    | 97.23        | 98.01        | 99.39        |
+| Under Armour Men's Tech II T-Shirt            | 3134.49    | 3784.31    | 1433.03    | 99.67        | 99.00        | 99.42        |
+| Team Golf San Francisco Giants Putter Grip    | 3939.50    | 3413.46    | 1409.30    | 98.89        | 99.37        | 99.46        |
+| Glove It Women's Imperial Golf Glove          | 3829.84    | 2327.41    | 1402.69    | 98.97        | 99.97        | 99.49        |
+| Bridgestone e6 Straight Distance NFL Tennesse | 2492.63    | 4342.59    | 1382.77    | 99.78        | 98.68        | 99.52        |
+| Team Golf New England Patriots Putter Grip    | 3404.84    | 4256.67    | 1335.56    | 99.40        | 98.76        | 99.54        |
+| CDs of rock                                   | 0.00       | 0.00       | 1267.72    | 100.00       | 100.00       | 99.57        |
+| Nike Men's Deutschland Weltmeister Winners Bl | 4174.95    | 6209.70    | 1249.05    | 98.39        | 97.11        | 99.60        |
+| Under Armour Kids' Mercenary Slide            | 3656.45    | 3090.77    | 1181.45    | 99.04        | 99.56        | 99.62        |
+| Toys                                          | 0.00       | 0.00       | 1165.44    | 100.00       | 100.00       | 99.65        |
+| Bag Boy Beverage Holder                       | 3430.75    | 3675.13    | 1073.93    | 99.33        | 99.15        | 99.67        |
+| Team Golf Texas Longhorns Putter Grip         | 4091.09    | 2484.75    | 1069.31    | 98.64        | 99.83        | 99.70        |
+| Under Armour Women's Ignite Slide             | 5329.45    | 4684.24    | 1045.74    | 97.58        | 98.31        | 99.72        |
+| Nike Dri-FIT Crew Sock 6 Pack                 | 3291.09    | 2849.77    | 1004.74    | 99.47        | 99.62        | 99.74        |
+| Glove It Women's Mod Oval 3-Zip Carry All Gol | 3579.20    | 3616.45    | 982.30     | 99.19        | 99.22        | 99.76        |
+| Under Armour Women's Ignite PIP VI Slide      | 5032.47    | 5011.02    | 925.61     | 98.01        | 98.11        | 99.78        |
+| Top Flite Women's 2014 XL Hybrid              | 3247.02    | 3496.30    | 885.33     | 99.61        | 99.30        | 99.80        |
+| Team Golf Tennessee Volunteers Putter Grip    | 4098.84    | 4518.02    | 876.52     | 98.56        | 98.49        | 99.82        |
+| Glove It Urban Brick Golf Towel               | 2667.29    | 2414.87    | 861.62     | 99.73        | 99.93        | 99.84        |
+| Team Golf St. Louis Cardinals Putter Grip     | 3622.63    | 4568.64    | 782.93     | 99.12        | 98.40        | 99.86        |
+| Glove It Women's Mod Oval Golf Glove          | 2445.25    | 2614.87    | 780.30     | 99.83        | 99.72        | 99.87        |
+| Hirzl Women's Soffft Flex Golf Glove          | 3280.07    | 2620.58    | 779.58     | 99.54        | 99.67        | 99.89        |
+| Bridgestone e6 Straight Distance NFL Carolina | 5183.60    | 5562.40    | 726.00     | 97.91        | 97.46        | 99.91        |
+| Team Golf Pittsburgh Steelers Putter Grip     | 4563.22    | 3825.95    | 718.95     | 98.21        | 98.84        | 99.92        |
+| adidas Men's Germany Black Crest Away Tee     | 3479.63    | 3174.01    | 698.50     | 99.26        | 99.43        | 99.94        |
+| Hirzl Men's Hybrid Golf Glove                 | 2345.69    | 2544.66    | 682.86     | 99.88        | 99.78        | 99.95        |
+| Nike Women's Legend V-Neck T-Shirt            | 4030.25    | 3798.64    | 633.00     | 98.81        | 98.92        | 99.97        |
+| Hirzl Women's Hybrid Golf Glove               | 2302.90    | 2416.06    | 620.87     | 99.92        | 99.88        | 99.98        |
+| Glove It Imperial Golf Towel                  | 2300.14    | 3133.50    | 606.80     | 99.97        | 99.49        | 99.99        |
+| Clicgear 8.0 Shoe Brush                       | 1406.19    | 1265.20    | 380.55     | 100.00       | 100.00       | 100.00       |
+
+Throughout the period of 3 years from 2015 to 2017, around 80% of realized revenue was always generated by only roughly 8-13% of total number of products. This is considered a high risk as the company is heavily reliant on just a few items and might face a huge problem probably caused by minimal decrease of one of these products.  
