@@ -165,3 +165,255 @@ SELECT
     array_agg(DISTINCT "Days for shipment (scheduled)") AS scheduled_days_list
 FROM "DataCo"
 GROUP BY "Shipping Mode";
+
+-- Sales performance analysis
+-- Revenue situation
+-- Overall trend
+SELECT 
+    EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) AS order_year,
+    SUM("Order Item Total") AS total_order_item_total
+FROM "DataCo"
+WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+  AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+GROUP BY order_year
+ORDER BY order_year;
+
+-- Product range  dynamics
+-- Checking number of products ordered from 2015 to 2017
+SELECT 
+    EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) AS order_year,
+    COUNT(DISTINCT "Product Name") AS distinct_product_count
+FROM "DataCo"
+WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+  AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+GROUP BY order_year
+ORDER BY order_year;
+
+-- Changes of product range
+
+WITH product_years AS (
+    SELECT 
+        "Product Name",
+        MIN(EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) AS min_year,
+        MAX(EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) AS max_year
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+    GROUP BY "Product Name"
+)
+SELECT 
+    ROW_NUMBER() OVER (ORDER BY CASE WHEN min_year = max_year THEN 'in ' || min_year ELSE 'from ' || min_year || ' to ' || max_year END DESC, "Product Name") AS stt,
+    "Product Name",
+    CASE 
+        WHEN min_year = max_year THEN 'in ' || min_year
+        ELSE 'from ' || min_year || ' to ' || max_year
+    END AS comment
+FROM product_years
+ORDER BY comment DESC, "Product Name";
+
+-- Declining demand for legacy products
+-- Detailed table
+WITH products_2017 AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) = 2017
+),
+sales_comparison AS (
+    SELECT 
+        p."Product Name",
+        ROUND(SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2016 THEN d."Order Item Total" ELSE 0 END)::numeric, 2) AS total_2016,
+        ROUND(SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2017 THEN d."Order Item Total" ELSE 0 END)::numeric, 2) AS total_2017
+    FROM products_2017 p
+    LEFT JOIN "DataCo" d ON p."Product Name" = d."Product Name" 
+         AND UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+         AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2016, 2017)
+    GROUP BY p."Product Name"
+),
+total_sum_2017 AS (
+    SELECT SUM(total_2017) AS grand_total_2017 FROM sales_comparison
+)
+SELECT 
+    sc."Product Name",
+    sc.total_2016,
+    sc.total_2017,
+    CASE 
+        WHEN sc.total_2016 = 0 THEN NULL
+        ELSE ROUND((((sc.total_2017 - sc.total_2016) / sc.total_2016) * 100)::numeric, 2)
+    END AS growth_pct_vs_2016,
+    ROUND(((sc.total_2017 / t.grand_total_2017) * 100)::numeric, 4) AS pct_of_total_2017
+FROM sales_comparison sc
+CROSS JOIN total_sum_2017 t
+ORDER BY sc.total_2017 DESC;
+
+-- Summary table
+WITH products_2017 AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) = 2017
+),
+sales_comparison AS (
+    SELECT 
+        p."Product Name",
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2016 THEN d."Order Item Total" ELSE 0 END) AS total_2016,
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2017 THEN d."Order Item Total" ELSE 0 END) AS total_2017
+    FROM products_2017 p
+    LEFT JOIN "DataCo" d ON p."Product Name" = d."Product Name" 
+         AND UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+         AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2016, 2017)
+    GROUP BY p."Product Name"
+),
+classified_products AS (
+    SELECT 
+        "Product Name",
+        total_2017,
+        CASE 
+            WHEN total_2016 = 0 THEN 'New Products (2017)'
+            ELSE 'Legacy Products (Existing)'
+        END AS product_category
+    FROM sales_comparison
+),
+category_summary AS (
+    SELECT 
+        product_category,
+        ROUND(SUM(total_2017)::numeric, 2) AS sum_total_2017,
+        COUNT("Product Name") AS product_count
+    FROM classified_products
+    GROUP BY product_category
+),
+grand_total AS (
+    SELECT SUM(sum_total_2017) AS overall_total_2017 FROM category_summary
+)
+SELECT 
+    cs.product_category,
+    cs.product_count,
+    cs.sum_total_2017,
+    ROUND(((cs.sum_total_2017 / gt.overall_total_2017) * 100)::numeric, 2) AS pct_share_of_2017
+FROM category_summary cs
+CROSS JOIN grand_total gt
+ORDER BY cs.sum_total_2017 DESC;
+
+-- Investigation of the cause behind decreased demand: 
+-- Checking changes in quantity of long existed products from 2016 to 2017
+WITH valid_products AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+    GROUP BY "Product Name"
+    HAVING COUNT(DISTINCT EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) = 3
+),
+yearly_qty AS (
+    SELECT 
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2016 THEN d."Order Item Quantity" ELSE 0 END) AS qty_2016,
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2017 THEN d."Order Item Quantity" ELSE 0 END) AS qty_2017
+    FROM valid_products p
+    JOIN "DataCo" d ON p."Product Name" = d."Product Name"
+    WHERE UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2016, 2017)
+)
+SELECT 
+    qty_2016,
+    qty_2017,
+    ROUND((((qty_2017 - qty_2016)::numeric / NULLIF(qty_2016, 0)) * 100), 2) AS qty_growth_pct
+FROM yearly_qty;
+
+-- Breakdown of quantity of long-existing products from 2016 to 2017
+WITH valid_products AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+    GROUP BY "Product Name"
+    HAVING COUNT(DISTINCT EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) = 3
+),
+product_qty AS (
+    SELECT 
+        p."Product Name",
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2016 THEN d."Order Item Quantity" ELSE 0 END) AS qty_2016,
+        SUM(CASE WHEN EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) = 2017 THEN d."Order Item Quantity" ELSE 0 END) AS qty_2017
+    FROM valid_products p
+    JOIN "DataCo" d ON p."Product Name" = d."Product Name"
+    WHERE UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2016, 2017)
+    GROUP BY p."Product Name"
+)
+SELECT 
+    "Product Name",
+    qty_2016,
+    qty_2017,
+    (qty_2017 - qty_2016) AS qty_difference,
+    ROUND((((qty_2017 - qty_2016)::numeric / NULLIF(qty_2016, 0)) * 100), 2) AS qty_growth_pct
+FROM product_qty
+ORDER BY qty_difference ASC;
+
+-- Checking if quantity per customer or the number of customers has more impact on the decreased quantity
+WITH valid_products AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+    GROUP BY "Product Name"
+    HAVING COUNT(DISTINCT EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) = 3
+),
+filtered_data AS (
+    SELECT 
+        EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) AS order_year,
+        d."Order Customer Id",
+        d."Order Item Quantity"
+    FROM valid_products p
+    JOIN "DataCo" d ON p."Product Name" = d."Product Name"
+    WHERE UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2016, 2017)
+),
+metrics AS (
+    SELECT 
+        SUM(CASE WHEN order_year = 2016 THEN "Order Item Quantity" ELSE 0 END) AS total_qty_2016,
+        COUNT(DISTINCT CASE WHEN order_year = 2016 THEN "Order Customer Id" END) AS distinct_cust_2016,
+        SUM(CASE WHEN order_year = 2017 THEN "Order Item Quantity" ELSE 0 END) AS total_qty_2017,
+        COUNT(DISTINCT CASE WHEN order_year = 2017 THEN "Order Customer Id" END) AS distinct_cust_2017
+    FROM filtered_data
+)
+SELECT 
+    distinct_cust_2016,
+    distinct_cust_2017,
+    ROUND((total_qty_2016::numeric / NULLIF(distinct_cust_2016, 0)), 2) AS qty_per_customer_2016,
+    ROUND((total_qty_2017::numeric / NULLIF(distinct_cust_2017, 0)), 2) AS qty_per_customer_2017
+FROM metrics;
+
+-- Checking which type of customer made up greater proportion of customer leaving
+WITH valid_products AS (
+    SELECT DISTINCT "Product Name"
+    FROM "DataCo"
+    WHERE UPPER("Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+    GROUP BY "Product Name"
+    HAVING COUNT(DISTINCT EXTRACT(YEAR FROM "order date (DateOrders)"::timestamp)) = 3
+),
+base_orders AS (
+    SELECT DISTINCT 
+        EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) AS order_year,
+        d."Order Customer Id"
+    FROM valid_products p
+    JOIN "DataCo" d ON p."Product Name" = d."Product Name"
+    WHERE UPPER(d."Order Status") IN ('COMPLETE', 'CLOSED')
+      AND EXTRACT(YEAR FROM d."order date (DateOrders)"::timestamp) IN (2015, 2016, 2017)
+),
+customers_2015 AS (
+    SELECT DISTINCT "Order Customer Id" FROM base_orders WHERE order_year = 2015
+),
+customers_up_to_2016 AS (
+    SELECT DISTINCT "Order Customer Id" FROM base_orders WHERE order_year <= 2016
+),
+cust_2016 AS (
+    SELECT DISTINCT "Order Customer Id" FROM base_orders WHERE order_year = 2016
+),
+cust_2017 AS (
+    SELECT DISTINCT "Order Customer Id" FROM base_orders WHERE order_year = 2017
+)
+SELECT 
+    (SELECT COUNT(*) FROM cust_2016 WHERE "Order Customer Id" NOT IN (SELECT "Order Customer Id" FROM customers_2015)) AS new_cust_2016,
+    (SELECT COUNT(*) FROM cust_2016 WHERE "Order Customer Id" IN (SELECT "Order Customer Id" FROM customers_2015)) AS returning_cust_2016,
+    (SELECT COUNT(*) FROM cust_2017 WHERE "Order Customer Id" NOT IN (SELECT "Order Customer Id" FROM customers_up_to_2016)) AS new_cust_2017,
+    (SELECT COUNT(*) FROM cust_2017 WHERE "Order Customer Id" IN (SELECT "Order Customer Id" FROM customers_up_to_2016)) AS returning_cust_2017;
