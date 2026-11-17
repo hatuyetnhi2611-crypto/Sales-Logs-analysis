@@ -420,7 +420,7 @@ The percentage of quantity decline of those items with highest revenue ranged fr
 | ------------------ | ------------------ | --------------------- | --------------------- |
 | 6599               | 5219               | 9.20                  | 7.91                  |
 
-Both quantity per customer and the number of customers decreased from 2016 to 2017. While the average quantity bought by one customer went down by 14%, the number of customers saw a decrease of nearly 21% and therefore had a greater impact on the downturn of total purchased quantity
+Both quantity per customer and the number of customers decreased from 2016 to 2017. While the average quantity bought by one customer went down by 14%, the number of customers saw a decrease of nearly 21%. This shows that the decline in the number of customers accounts for a larger share of the fall in total quantity than the decline in quantity per customer. 
 
 | new_cust_2016 | returning_cust_2016 | new_cust_2017 | returning_cust_2017 |
 | ------------- | ------------------- | ------------- | ------------------- |
