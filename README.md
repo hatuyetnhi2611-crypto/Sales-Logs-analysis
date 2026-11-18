@@ -699,3 +699,17 @@ In 2017, over 80% of revenue of Europe and LATAM were accounted for by products 
 As for Pacific Asia, its realized revenue dropped by 73% from 2016 to 2017. In 2016, the majority of revenue of this market was earned by the same products that were bringing the most revenue to the company. In 2017, this pattern changed as 80.6% of this market’s earnings was made by newly released products instead of those that led during 2016. Even though the revenue per unit of this market was twice as high as LATAM’s, the number of units sold to LATAM was 9.2 times higher than that sold to Pacific Asia. This in turn brought Pacific Asia the 3rd place in revenue ranking. 
 
 The distribution of slightly over 80% of revenue over available products for Africa and USCA remained nearly the same as previous year and as that of LATAM. However, the quantity sold of these 02 markets was particularly low, leading them to end up as the 02 markets generating least revenue.
+
+   **7.2 Profit situation**
+
+- Profitability & margin insights
+
+| order_year | total_order_item_total | total_profit | total_loss | profit_margin | positive_profit_share_of_revenue | loss_share_of_revenue |
+| ---------- | ---------------------- | ------------ | ---------- | ------------- | -------------------------------- | --------------------- |
+| 2015       | 4857736.22             | 598027.68    | -559161.57 | 0.1231        | 0.2382                           | 0.1151                |
+| 2016       | 4873670.71             | 571882.70    | -587612.58 | 0.1173        | 0.2379                           | 0.1206                |
+| 2017       | 4610967.15             | 591282.04    | -513713.26 | 0.1282        | 0.2396                           | 0.1114                |
+
+Net profit rose by 3.4% from 2016 to 2017 as a higher margin (11.7% to 12.8%) outweighed a 5.4% drop in revenue. About 85% of the margin gain comes from smaller losses relative to revenue.
+
+<img width="1104" height="448" alt="image" src="https://github.com/user-attachments/assets/119550d6-e05c-47d7-957e-bbae4b90e310" />
