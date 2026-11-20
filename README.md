@@ -798,4 +798,36 @@ Late delivery did not make the gap between implied costs and sales larger than o
 
 The table shows, for each price group (<=60, <=200, <=500, <=1000, and >1000), the percentage of its line items that fall into each cost-to-sales ratio group (<=1.15, <=1.5, <=2, <=2.5, and >2.5).
 
-Most price groups had the same distribution of line items across the cost to sales ratios. Around 80% of line items of these price groups would spread rather evenly within low to medium ratio groups. Only small proportions of around over 11% and 8% would be made up by line items with high to very high ratios (<=2.5 and >2.5). Therefore, the assumption is wrong and there is no connection between the change of implied costs and product price.
+Most price groups had the same distribution of line items across the cost to sales ratios. Around 80% of line items of these price groups would spread rather evenly within low to medium ratio groups. Only small proportions of around over 11% and 8% would be made up by line items with high to very high ratios (<=2.5 and >2.5). This in turn shows that product price does not have any impact on how big or small the implied costs and losses would be.
+
+**Assumption 3:** Some customer segments would suffer from heavier losses than the others. 
+
+| Customer Segment | cost_minus_sales | total_sales | excess_cost_to_sales_ratio |
+| ---------------- | ---------------- | ----------- | -------------------------- |
+| Consumer         | 225291.08        | 381778.55   | 0.5901                     |
+| Corporate        | 137470.93        | 219451.61   | 0.6264                     |
+| Home Office      | 71094.05         | 133424.46   | 0.5328                     |
+
+All customer segments had nearly identical loss ratio, at around 0.5-0.6%. Customer segment is not associated with heavier losses.
+
+**Assumption 4:** Some markets would suffer from heavier losses than the others. 
+
+| Market       | cost_minus_sales | total_sales | excess_cost_to_sales_ratio |
+| ------------ | ---------------- | ----------- | -------------------------- |
+| LATAM        | 197055.64        | 330826.60   | 0.5956                     |
+| Europe       | 186526.56        | 317811.50   | 0.5869                     |
+| Pacific Asia | 42175.39         | 71637.20    | 0.5887                     |
+| Africa       | 7587.18          | 13331.53    | 0.5691                     |
+| USCA         | 511.29           | 1047.80     | 0.4880                     |
+
+All markets except USCA whose number of line items were particularly small had nearly identical loss ration. Market is not associated with heavier losses.
+
+| ratio_group | order_item_count | total_cost_diff | pct_of_total_count | pct_of_total_cost_diff |
+| ----------- | ---------------- | --------------- | ------------------ | ---------------------- |
+| <= 1.15     | 912              | 12890.11        | 26.95              | 2.97                   |
+| <= 1.5      | 965              | 65446.36        | 28.52              | 15.08                  |
+| <= 2        | 790              | 108782.47       | 23.35              | 25.07                  |
+| <= 2.5      | 409              | 114476.76       | 12.09              | 26.39                  |
+| > 2.5       | 308              | 132260.36       | 9.10               | 30.48                  |
+
+**Conclusion for the profit analysis:** These 3 cost to sales ratio groups: <=2, <=2.5, >2.5 may need more attention because they made up over 44% of total order line items but roughly 82% of loss. Also, the provision of information such as inventory storage day or breakdown of costs will be needed to find out the true cause behind the losses company is faced with.
