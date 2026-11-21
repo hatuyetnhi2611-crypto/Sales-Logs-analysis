@@ -831,3 +831,110 @@ All markets except USCA whose number of line items were particularly small had n
 | > 2.5       | 308              | 132260.36       | 9.10               | 30.48                  |
 
 **Conclusion for the profit analysis:** These 3 cost to sales ratio groups: <=2, <=2.5, >2.5 may need more attention because they made up over 44% of total order line items but roughly 82% of loss. Also, the provision of information such as inventory storage day or breakdown of costs will be needed to find out the true cause behind the losses company is faced with.
+
+**8. Logistics performance analysis**
+
+- Overview of delivery performance
+
+| Shipping Mode  | on_time_or_advance_count | late_delivery_count |
+| -------------- | ------------------------ | ------------------- |
+| First Class    | 0                        | 7579                |
+| Same Day       | 1299                     | 1454                |
+| Second Class   | 2053                     | 7864                |
+| Standard Class | 18532                    | 12067               |
+
+| Shipping Mode  | avg_days_for_shipping_real | scheduled_shipping_days | Delay level (days) |
+| -------------- | -------------------------- | ----------------------- | ------------------ |
+| First Class    | 2.00                       | 1                       | 1.00               |
+| Same Day       | 1.00                       | 0                       | 1.00               |
+| Second Class   | 4.50                       | 2                       | 2.50               |
+| Standard Class | 5.50                       | 4                       | 1.50               |
+
+In 2017, late line items accounted for 56.96% of total line items of the company while on time and early delivered order lines made up a little less than that, at 43.04%. Standard class was the most used shipping mode, followed by second class, first class and same day. The usage ranking of shipping modes mirrored their ranking by late-delivery share, with the most used modes also accounting for the highest share of late deliveries.
+
+First class and Second class were the two shipping modes that should be watched out for. While Second class had the combination of both a high late rate (79%) and the longest delay (2.5 days when late), First Class showed the highest late rate (100%) but the shortest delay (1 day): every shipment takes exactly 2 days against a 1-day promise. Which mode is “riskiest” depends on whether broken promises or days of delay are weighted more.
+
+- Shipment lateness factor testing
+
+The delay in ship date can stem from many reasons such as the inefficiency of shipping modes themselves, location-related constraints, or warehousing activities affecting the readiness of products. The dataset does not present any data to allow a firm conclusion on driving factor behind shipping lateness. Below is merely examination carried out to check if shipment lateness may vary depending on customers’ state, products and departments.
+
+**Assumption 1:** Late product pickup can be caused by geographical issues of the location where it is stored, so customers’ states, which refers to the state where the fulfilling store is located, may have a certain impact on how timely the dispatch can be.
+
+| Customer State | same_day_on_time_or_advance_pct | same_day_late_pct | second_class_on_time_or_advance_pct | second_class_late_pct | standard_class_on_time_or_advance_pct | standard_class_late_pct |
+| -------------- | ------------------------------- | ----------------- | ----------------------------------- | --------------------- | ------------------------------------- | ----------------------- |
+| PR             | 47.40                           | 52.60             | 20.02                               | 79.98                 | 60.62                                 | 39.38                   |
+| CA             | 44.01                           | 55.99             | 19.95                               | 80.05                 | 59.01                                 | 40.99                   |
+| NY             | 49.26                           | 50.74             | 25.80                               | 74.20                 | 63.17                                 | 36.83                   |
+| TX             | 50.98                           | 49.02             | 21.94                               | 78.06                 | 59.93                                 | 40.07                   |
+| IL             | 47.47                           | 52.53             | 20.24                               | 79.76                 | 56.34                                 | 43.66                   |
+| FL             | 45.28                           | 54.72             | 17.21                               | 82.79                 | 63.73                                 | 36.27                   |
+| OH             | 46.03                           | 53.97             | 15.87                               | 84.13                 | 62.44                                 | 37.56                   |
+| PA             | 50.00                           | 50.00             | 25.48                               | 74.52                 | 57.30                                 | 42.70                   |
+| MI             | 60.00                           | 40.00             | 21.21                               | 78.79                 | 62.76                                 | 37.24                   |
+| NJ             | 62.75                           | 37.25             | 19.14                               | 80.86                 | 60.27                                 | 39.73                   |
+
+Aside from First Class shipping mode whose delivery rate was 100% of total line items, the late delivery rate of biggest states of all other shipping modes fluctuated around the overall late rate. For example, the late rate of Second Class ranged from 74.52% to 84.13%, around ±5 points away from overall rate (79.3%). Regarding smaller states, since their order lines are too few, their late delivery rate can be heavily influenced by sampling noise, leading the rate to fall within a wider fluctuation range. Thus, there is no clear evidence that late delivery varies by state and a high chance that those states with the highest number of order lines would deal with the highest percentage of late shipments.
+
+**Assumption 2:** Due to some particular reasons, some products may take longer to be ready for shipment than scheduled and thus have a high late delivery percentage as well as a high level of lateness.
+
+**Shipping mode: Same Day**
+
+| Product Name                                  | on_time_or_advance_pct | late_delivery_pct |
+| --------------------------------------------- | ---------------------- | ----------------- |
+| Perfect Fitness Perfect Rip Deck              | 50.15                  | 49.85             |
+| Nike Men's CJ Elite 2 TD Football Cleat       | 45.10                  | 54.90             |
+| Nike Men's Dri-FIT Victory Golf Polo          | 45.67                  | 54.33             |
+| O'Brien Men's Neoprene Life Vest              | 43.84                  | 56.16             |
+| Pelican Sunstream 100 Kayak                   | 53.44                  | 46.56             |
+| Field & Stream Sportsman 16 Gun Fire Safe     | 43.24                  | 56.76             |
+| Diamondback Women's Serene Classic Comfort Bi | 44.88                  | 55.12             |
+
+For Same Day shipping mode, the shipment delay degree remained 01 day throughout 2017. The first 07 products in the list were the biggest products with the greatest numbers of order lines and under lighter impact from sampling noise. The late delivery rate of these products ranged from 46.5% to 56.7% and was nearly equal to the overall rate (52.82%), indicating that there were not any products dealing with severe lateness. 
+
+**Shipping mode: Second Class**
+
+| Product Name                                  | days_real_2_pct | days_real_3_pct | days_real_4_pct | days_real_5_pct | days_real_6_pct |
+| --------------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
+| Nike Men's CJ Elite 2 TD Football Cleat       | 22.20           | 18.17           | 21.30           | 19.16           | 19.16           |
+| Perfect Fitness Perfect Rip Deck              | 20.79           | 20.54           | 21.29           | 18.56           | 18.81           |
+| Nike Men's Dri-FIT Victory Golf Polo          | 22.09           | 16.96           | 19.38           | 19.57           | 21.99           |
+| O'Brien Men's Neoprene Life Vest              | 17.47           | 21.31           | 21.01           | 19.19           | 21.01           |
+| Field & Stream Sportsman 16 Gun Fire Safe     | 21.28           | 17.39           | 18.76           | 21.40           | 21.17           |
+| Pelican Sunstream 100 Kayak                   | 21.99           | 22.38           | 17.52           | 19.44           | 18.67           |
+| Diamondback Women's Serene Classic Comfort Bi | 22.40           | 21.99           | 20.90           | 17.08           | 17.62           |
+| Nike Men's Free 5.0+ Running Shoe             | 23.44           | 19.84           | 20.66           | 19.02           | 17.05           |
+
+**Shipping mode: Standard Class**
+
+| Product Name                                  | days_real_2_pct | days_real_3_pct | days_real_4_pct | days_real_5_pct | days_real_6_pct |
+| --------------------------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
+| Perfect Fitness Perfect Rip Deck              | 20.63           | 20.55           | 20.18           | 18.50           | 20.13           |
+| Nike Men's CJ Elite 2 TD Football Cleat       | 19.55           | 20.13           | 21.10           | 19.70           | 19.52           |
+| Nike Men's Dri-FIT Victory Golf Polo          | 20.47           | 20.62           | 20.47           | 19.18           | 19.27           |
+| O'Brien Men's Neoprene Life Vest              | 20.20           | 19.20           | 19.04           | 21.16           | 20.40           |
+| Field & Stream Sportsman 16 Gun Fire Safe     | 21.07           | 18.42           | 20.96           | 20.27           | 19.29           |
+| Pelican Sunstream 100 Kayak                   | 20.42           | 20.66           | 20.87           | 19.31           | 18.74           |
+| Diamondback Women's Serene Classic Comfort Bi | 19.57           | 19.16           | 20.29           | 20.47           | 20.52           |
+| Nike Men's Free 5.0+ Running Shoe             | 19.71           | 20.49           | 20.95           | 20.69           | 18.16           |
+
+For Second class and Standard class, it took from 2 to 6 days to ship the products out. The number of order lines of biggest products is distributed rather evenly across 5 groups of real shipping days with approximately 20% of total order lines per group. This once again shows that there is little connection between the lateness degree and the products themselves.
+
+Also, it is noticeable that the distribution of order lines across products of both Second class and standard class is the same, so the warehousing activities may not be the cause behind the high delivery rate of Second class but rather the over promised shipping days.
+
+**Assumption 3:** Each department may necessitate different ways of handling and take different duration to be ready for shipment, which in turn have an impact on how timely the dispatch can be.
+
+| Department Name    | on_time_or_advance_pct | late_delivery_pct |
+| ------------------ | ---------------------- | ----------------- |
+| Fan Shop           | 42.63                  | 57.37             |
+| Apparel            | 43.47                  | 56.53             |
+| Golf               | 43.05                  | 56.95             |
+| Footwear           | 43.89                  | 56.11             |
+| Outdoors           | 43.09                  | 56.91             |
+| Technology         | 42.26                  | 57.74             |
+| Discs Shop         | 44.12                  | 55.88             |
+| Fitness            | 42.98                  | 57.02             |
+| Book Shop          | 41.43                  | 58.57             |
+| Pet Shop           | 36.80                  | 63.20             |
+| Health and Beauty  | 41.67                  | 58.33             |
+
+The late delivery rate of biggest departments also fluctuated slightly around the overall lateness rate (56.96%), which signifies late shipment rate would not vary by departments.
